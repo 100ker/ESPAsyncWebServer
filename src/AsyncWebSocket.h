@@ -24,10 +24,14 @@
 #include <Arduino.h>
 #ifdef ESP32
 #include <AsyncTCP.h>
-#define WS_MAX_QUEUED_MESSAGES 32
+#ifndef WS_MAX_QUEUED_MESSAGES
+  #define WS_MAX_QUEUED_MESSAGES 32
+#endif
 #else
 #include <ESPAsyncTCP.h>
-#define WS_MAX_QUEUED_MESSAGES 8
+#ifndef WS_MAX_QUEUED_MESSAGES
+  #define WS_MAX_QUEUED_MESSAGES 8
+#endif
 #endif
 #include <ESPAsyncWebServer.h>
 
@@ -41,9 +45,13 @@
 #endif
 
 #ifdef ESP32
-#define DEFAULT_MAX_WS_CLIENTS 8
+#ifndef DEFAULT_MAX_WS_CLIENTS
+  #define DEFAULT_MAX_WS_CLIENTS 8
+#endif
 #else
-#define DEFAULT_MAX_WS_CLIENTS 4
+#ifndef DEFAULT_MAX_WS_CLIENTS
+  #define DEFAULT_MAX_WS_CLIENTS 4
+#endif
 #endif
 
 class AsyncWebSocket;
